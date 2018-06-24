@@ -7,10 +7,14 @@ const app = express();
 
 // Connect to MongoDB
 mongoose.connect('mongodb://localhost/splitexpenses', {
-    // useMongoClient: true /* Not necessart since version 5 */
+    // useMongoClient: true /* Not necessary since version 5 */
 })
 .then(() => console.log('MongoDB Connected'))
 .catch((error) => console.log(error));
+
+// Load event model
+require('./models/Event');
+const Event = mongoose.model('events');
 
 // Register Handlebars middleware
 app.engine('handlebars', exphbs({
